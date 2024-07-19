@@ -1,0 +1,28 @@
+2024-07-19 22:59:55.564 [main] DEBUG ktor.application - Java Home: C:\Program Files\Java
+2024-07-19 22:59:55.566 [main] DEBUG ktor.application - Class Loader: jdk.internal.loader.ClassLoaders$AppClassLoader@33909752: [file:/C:/tmp/empty3/site/.kobweb/server/server.jar!/ch]
+2024-07-19 22:59:55.570 [main] INFO  ktor.application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2024-07-19 22:59:55.593 [main] INFO  ktor.application - API jar found and will be loaded: "build\libs\empty3.jar"
+2024-07-19 22:59:57.925 [main] INFO  ktor.application - Loaded and initialized server API jar in 2145ms.
+2024-07-19 22:59:57.944 [main] INFO  ktor.application - Initializing Kobweb streams.
+2024-07-19 22:59:57.987 [main] INFO  ktor.application - Application started in 2.551 seconds.
+2024-07-19 22:59:58.135 [main] INFO  ktor.application - Responding at http://127.0.0.1:8080
+2024-07-19 23:00:39.008 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Served fallback index.html file in response to "/"
+2024-07-19 23:00:49.614 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Served fallback index.html file in response to "/updateProduct"
+2024-07-19 23:00:50.501 [eventLoopGroupProxy-4-3] DEBUG ktor.application - Served fallback index.html file in response to "/user/reviews"
+2024-07-19 23:00:51.396 [eventLoopGroupProxy-4-4] DEBUG ktor.application - Served fallback index.html file in response to "/login"
+2024-07-19 23:00:52.262 [eventLoopGroupProxy-4-5] DEBUG ktor.application - Served fallback index.html file in response to "/register"
+2024-07-19 23:00:53.984 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Kobweb server shutting down...
+2024-07-19 23:00:56.177 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Server finished shutting down.
+2024-07-19 23:47:01.834 [main] DEBUG ktor.application - Java Home: C:\Program Files\Java
+2024-07-19 23:47:01.835 [main] DEBUG ktor.application - Class Loader: jdk.internal.loader.ClassLoaders$AppClassLoader@33909752: [file:/C:/tmp/empty3/site/.kobweb/server/server.jar!/ch]
+2024-07-19 23:47:01.836 [main] INFO  ktor.application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2024-07-19 23:47:01.850 [main] INFO  ktor.application - API jar found and will be loaded: "build\libs\empty3.jar"
+2024-07-19 23:47:04.036 [main] INFO  ktor.application - Loaded and initialized server API jar in 2080ms.
+2024-07-19 23:47:04.048 [main] INFO  ktor.application - Initializing Kobweb streams.
+2024-07-19 23:47:04.078 [main] INFO  ktor.application - Application started in 2.311 seconds.
+2024-07-19 23:47:04.185 [main] INFO  ktor.application - Responding at http://127.0.0.1:8080
+2024-07-19 23:47:12.088 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Served fallback index.html file in response to "/"
+2024-07-19 23:47:13.052 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2024-07-19 23:47:13.988 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
+2024-07-19 23:47:21.607 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Kobweb server shutting down...
+2024-07-19 23:47:23.789 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Server finished shutting down.
