@@ -1,0 +1,64 @@
+2024-07-19 18:22:06.667 [main] DEBUG ktor.application - Java Home: C:\Program Files\Java
+2024-07-19 18:22:06.669 [main] DEBUG ktor.application - Class Loader: jdk.internal.loader.ClassLoaders$AppClassLoader@33909752: [file:/C:/tmp/empty3/site/.kobweb/server/server.jar!/ch]
+2024-07-19 18:22:06.673 [main] INFO  ktor.application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2024-07-19 18:22:06.690 [main] INFO  ktor.application - API jar found and will be loaded: "build\libs\empty3.jar"
+2024-07-19 18:22:08.859 [main] INFO  ktor.application - Loaded and initialized server API jar in 2006ms.
+2024-07-19 18:22:08.884 [main] INFO  ktor.application - Initializing Kobweb streams.
+2024-07-19 18:22:08.925 [main] INFO  ktor.application - Application started in 2.332 seconds.
+2024-07-19 18:22:09.103 [main] INFO  ktor.application - Responding at http://127.0.0.1:8080
+2024-07-19 18:22:11.962 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Served fallback index.html file in response to "/"
+2024-07-19 18:22:12.950 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2024-07-19 18:22:14.522 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
+2024-07-19 18:32:09.364 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Kobweb server shutting down...
+2024-07-19 18:32:11.549 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Server finished shutting down.
+2024-07-19 18:32:39.940 [main] DEBUG ktor.application - Java Home: C:\Program Files\Java
+2024-07-19 18:32:39.941 [main] DEBUG ktor.application - Class Loader: jdk.internal.loader.ClassLoaders$AppClassLoader@33909752: [file:/C:/tmp/empty3/site/.kobweb/server/server.jar!/ch]
+2024-07-19 18:32:39.945 [main] INFO  ktor.application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2024-07-19 18:32:39.959 [main] INFO  ktor.application - API jar found and will be loaded: "build\libs\empty3.jar"
+2024-07-19 18:32:42.046 [main] INFO  ktor.application - Loaded and initialized server API jar in 1970ms.
+2024-07-19 18:32:42.058 [main] INFO  ktor.application - Initializing Kobweb streams.
+2024-07-19 18:32:42.089 [main] INFO  ktor.application - Application started in 2.208 seconds.
+2024-07-19 18:32:42.205 [main] INFO  ktor.application - Responding at http://127.0.0.1:8080
+2024-07-19 18:33:22.436 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Served fallback index.html file in response to "/"
+2024-07-19 18:33:33.028 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Served fallback index.html file in response to "/updateProduct"
+2024-07-19 18:33:33.912 [eventLoopGroupProxy-4-3] DEBUG ktor.application - Served fallback index.html file in response to "/user/reviews"
+2024-07-19 18:33:34.859 [eventLoopGroupProxy-4-4] DEBUG ktor.application - Served fallback index.html file in response to "/login"
+2024-07-19 18:33:35.803 [eventLoopGroupProxy-4-5] DEBUG ktor.application - Served fallback index.html file in response to "/register"
+2024-07-19 18:33:38.769 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Kobweb server shutting down...
+2024-07-19 18:33:40.945 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Server finished shutting down.
+2024-07-19 18:46:38.899 [main] DEBUG ktor.application - Java Home: C:\Program Files\Java
+2024-07-19 18:46:38.901 [main] DEBUG ktor.application - Class Loader: jdk.internal.loader.ClassLoaders$AppClassLoader@33909752: [file:/C:/tmp/empty3/site/.kobweb/server/server.jar!/ch]
+2024-07-19 18:46:38.904 [main] INFO  ktor.application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2024-07-19 18:46:38.922 [main] INFO  ktor.application - API jar found and will be loaded: "build\libs\empty3.jar"
+2024-07-19 18:46:41.181 [main] INFO  ktor.application - Loaded and initialized server API jar in 2115ms.
+2024-07-19 18:46:41.194 [main] INFO  ktor.application - Initializing Kobweb streams.
+2024-07-19 18:46:41.226 [main] INFO  ktor.application - Application started in 2.398 seconds.
+2024-07-19 18:46:41.333 [main] INFO  ktor.application - Responding at http://127.0.0.1:8080
+2024-07-19 18:47:00.558 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Served fallback index.html file in response to "/"
+2024-07-19 18:47:01.486 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2024-07-19 18:50:11.048 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
+2024-07-19 21:58:06.116 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Kobweb server shutting down...
+2024-07-19 21:58:08.330 [kotlinx.coroutines.DefaultExecutor] INFO  ktor.application - Server finished shutting down.
+2024-07-19 22:00:53.706 [main] DEBUG ktor.application - Java Home: C:\Program Files\Java
+2024-07-19 22:00:53.708 [main] DEBUG ktor.application - Class Loader: jdk.internal.loader.ClassLoaders$AppClassLoader@33909752: [file:/C:/tmp/empty3/site/.kobweb/server/server.jar!/ch]
+2024-07-19 22:00:53.713 [main] INFO  ktor.application - No ktor.deployment.watch patterns match classpath entries, automatic reload is not active
+2024-07-19 22:00:53.734 [main] INFO  ktor.application - API jar found and will be loaded: "build\libs\empty3.jar"
+2024-07-19 22:00:55.978 [main] INFO  ktor.application - Loaded and initialized server API jar in 2137ms.
+2024-07-19 22:00:55.999 [main] INFO  ktor.application - Initializing Kobweb streams.
+2024-07-19 22:00:56.044 [main] INFO  ktor.application - Application started in 2.415 seconds.
+2024-07-19 22:00:56.191 [main] INFO  ktor.application - Responding at http://127.0.0.1:8080
+2024-07-19 22:01:18.488 [eventLoopGroupProxy-4-1] DEBUG ktor.application - Served fallback index.html file in response to "/"
+2024-07-19 22:01:28.888 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2024-07-19 22:01:29.100 [eventLoopGroupProxy-4-3] DEBUG ktor.application - Served fallback index.html file in response to "/updateProduct"
+2024-07-19 22:01:29.522 [eventLoopGroupProxy-4-2] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
+2024-07-19 22:01:29.911 [eventLoopGroupProxy-4-4] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2024-07-19 22:01:30.000 [eventLoopGroupProxy-4-5] DEBUG ktor.application - Served fallback index.html file in response to "/user/reviews"
+2024-07-19 22:01:30.528 [eventLoopGroupProxy-4-4] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
+2024-07-19 22:01:30.811 [eventLoopGroupProxy-4-6] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2024-07-19 22:01:30.902 [eventLoopGroupProxy-4-7] DEBUG ktor.application - Served fallback index.html file in response to "/login"
+2024-07-19 22:01:31.430 [eventLoopGroupProxy-4-6] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
+2024-07-19 22:01:31.683 [eventLoopGroupProxy-4-7] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2024-07-19 22:01:31.774 [eventLoopGroupProxy-4-9] DEBUG ktor.application - Served fallback index.html file in response to "/register"
+2024-07-19 22:01:32.302 [eventLoopGroupProxy-4-7] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
+2024-07-19 22:01:32.558 [eventLoopGroupProxy-4-9] DEBUG ktor.application - Client connected and is requesting kobweb status events.
+2024-07-19 22:01:33.174 [eventLoopGroupProxy-4-9] DEBUG ktor.application - Stopped sending kobweb status events, probably because client disconnected or server is shutting down. (ChannelWriteException: Cannot write to a channel)
