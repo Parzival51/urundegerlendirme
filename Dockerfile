@@ -24,7 +24,7 @@ ENV NODE_MAJOR=20
 COPY . /project
 
 # Update and install required OS packages to continue
-# Note: Node install instructions from: https://github.com/nodesource/distributions#installation-instructions
+# Note: Node install instructions from: https://github.com/nodesource/distributions/README.md#installation-instructions
 # Note: Playwright is a system for running browsers, and here we use it to
 # install Chromium.
 RUN apt-get update \
@@ -50,9 +50,8 @@ WORKDIR /project/${KOBWEB_APP_ROOT}
 # (many free Cloud tiers only give you 512M of RAM). The following amount
 # should be more than enough to build and export our site.
 RUN mkdir ~/.gradle && \
-    echo "org.gradle.jvmargs=-Xmx256m" >> ~/.gradle/gradle.properties
+    echo "org.gradle.jvmargs=-Xmx1024m" >> ~/.gradle/gradle.properties
 
-# Export the site
 RUN kobweb export --notty
 
 #-----------------------------------------------------------------------------
