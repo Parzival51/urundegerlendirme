@@ -5,10 +5,10 @@ server:
   files:
     dev:
       contentRoot: "build/processedResources/js/main/public"
-      script: "build/dist/js/developmentExecutable/productrating.js"
-      api: "build/libs/productrating.jar"
+      script: "build/dist/js/developmentExecutable/empty3.js"
+      api: "build/libs/empty3.jar"
     prod:
-      script: "build/dist/js/productionExecutable/productrating.js"
+      script: "build/dist/js/productionExecutable/empty3.js"
       siteRoot: ".kobweb/site"
   port: 8080
   cors:
@@ -16,3 +16,4 @@ server:
       - name: "my-fullstack-app.onrender.com"
         schemes:
           - "https"
+
