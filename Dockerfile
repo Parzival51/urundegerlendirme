@@ -48,8 +48,8 @@ WORKDIR /project/${KOBWEB_APP_ROOT}
 # (many free Cloud tiers only give you 512M of RAM). The following amount
 # should be more than enough to build and export our site.
 RUN mkdir ~/.gradle && \
-    echo "org.gradle.jvmargs=-Xmx500m" >> ~/.gradle/gradle.properties \
-    && echo "kotlin.daemon.jvmargs=-Xmx500m" >> ~/.gradle/gradle.properties
+    echo "org.gradle.jvmargs=-Xmx400m" >> ~/.gradle/gradle.properties \
+    && echo "kotlin.daemon.jvmargs=-Xmx400m" >> ~/.gradle/gradle.properties
 
 RUN kobweb export --notty
 
