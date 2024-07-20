@@ -46,11 +46,6 @@ kotlin {
         jvmMain.dependencies {
             compileOnly(libs.kobweb.api) // Provided by Kobweb backend at runtime
             implementation(libs.mongodb.kotlin.driver)
-            implementation(libs.ktor.server.core)
-            implementation(libs.ktor.server.swagger)
-            implementation(libs.ktor.server.content.negotiation)
-            implementation(libs.ktor.serialization.gson)
-            implementation(libs.ktor.server.tomcat)
             implementation("at.favre.lib:bcrypt:0.9.0")
         }
     }
