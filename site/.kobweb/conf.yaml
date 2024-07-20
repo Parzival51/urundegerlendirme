@@ -10,7 +10,7 @@ server:
     prod:
       script: "build/dist/js/productionExecutable/empty3.js"
       siteRoot: ".kobweb/site"
-  port: 8080
+  port: 8081
   cors:
     hosts:
       - name: "my-fullstack-app.onrender.com"
