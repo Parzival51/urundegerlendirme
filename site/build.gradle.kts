@@ -31,6 +31,8 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(libs.kotlinx.serialization.json)
+            implementation(libs.ktor.client.core)
+
         }
 
         jsMain.dependencies {
