@@ -21,13 +21,6 @@ silk-icons-mdi = { module = "com.varabyte.kobwebx:silk-icons-mdi", version.ref =
 kotlinx-serialization-json = { module = "org.jetbrains.kotlinx:kotlinx-serialization-json", version.ref = "serialization" }
 mongodb-kotlin-driver = { module = "org.mongodb:mongodb-driver-kotlin-coroutine", version.ref = "mongodb-kotlin" }
 ktor-client-core = { module = "io.ktor:ktor-client-core", version.ref = "ktor" }
-ktor-client-okhttp = { module = "io.ktor:ktor-client-okhttp", version.ref = "ktor" }
-ktor-client-darwin = { module = "io.ktor:ktor-client-darwin", version.ref = "ktor" }
-ktor-server-core = { module = "io.ktor:ktor-server-core", version.ref = "ktor" }
-ktor-server-swagger = { module = "io.ktor:ktor-server-swagger", version.ref = "ktor" }
-ktor-server-content-negotiation = { module = "io.ktor:ktor-server-content-negotiation", version.ref = "ktor" }
-ktor-serialization-gson = { module = "io.ktor:ktor-serialization-gson", version.ref = "ktor" }
-ktor-server-tomcat = { module = "io.ktor:ktor-server-tomcat", version.ref = "ktor" }
 kotlinx-html-js = { module = "org.jetbrains.kotlinx:kotlinx-html-js", version.ref = "kotlinx-html-js" }
 
 
