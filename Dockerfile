@@ -1,18 +1,20 @@
 #-----------------------------------------------------------------------------
 # Variables are shared across multiple stages (they need to be explicitly
-# opted # into each stage by being declaring there too, but their values need
-# only be # specified once).
+# opted into each stage by being declared there too, but their values need
+# only be specified once).
 ARG KOBWEB_APP_ROOT="site"
+# ^ NOTE: Kobweb apps generally live in a root "site" folder in your project,
+# but you can change this in case your project has a custom layout.
 
-FROM eclipse-temurin:21 AS java
+FROM eclipse-temurin:17 as java
 
 #-----------------------------------------------------------------------------
 # Create an intermediate stage which builds and exports our site. In the
 # final stage, we'll only extract what we need from this stage, saving a lot
 # of space.
-FROM java AS export
+FROM java as export
 
-ENV KOBWEB_CLI_VERSION=0.9.15
+ENV KOBWEB_CLI_VERSION=0.9.13
 ARG KOBWEB_APP_ROOT
 
 ENV NODE_MAJOR=20
@@ -48,18 +50,18 @@ WORKDIR /project/${KOBWEB_APP_ROOT}
 # (many free Cloud tiers only give you 512M of RAM). The following amount
 # should be more than enough to build and export our site.
 RUN mkdir ~/.gradle && \
-    echo "org.gradle.jvmargs=-Xmx400m" >> ~/.gradle/gradle.properties \
-    && echo "kotlin.daemon.jvmargs=-Xmx400m" >> ~/.gradle/gradle.properties
+    echo "org.gradle.jvmargs=-Xmx500m" >> ~/.gradle/gradle.properties \
+    && echo "kotlin.daemon.jvmargs=-Xmx500m" >> ~/.gradle/gradle.properties
 
 RUN kobweb export --notty
 
 #-----------------------------------------------------------------------------
 # Create the final stage, which contains just enough bits to run the Kobweb
 # server.
-FROM java AS run
+FROM java as run
 
 ARG KOBWEB_APP_ROOT
 
 COPY --from=export /project/${KOBWEB_APP_ROOT}/.kobweb .kobweb
 
-ENTRYPOINT [".kobweb/server/start.sh"]
+ENTRYPOINT .kobweb/server/start.sh
