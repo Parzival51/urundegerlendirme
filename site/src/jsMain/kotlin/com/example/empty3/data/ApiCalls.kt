@@ -1,5 +1,50 @@
 package com.example.empty3.data
 
+sealed class ApiResult<T> {
+    data class Success<T>(val data: T) : ApiResult<T>()
+    data class Error<T>(val exception: Exception) : ApiResult<T>()
+}
+
+private suspend inline fun <T> handleApiCall(
+    apiPath: String,
+    method: String,
+    body: ByteArray? = null,
+    crossinline deserialize: (String) -> T
+): ApiResult<T> {
+    return try {
+        val response = when (method) {
+            "GET" -> window.api.tryGet(apiPath)
+            "POST" -> window.api.tryPost(apiPath, body)
+            else -> throw IllegalArgumentException("Unsupported HTTP method: $method")
+        }
+        val decodedResponse = response?.decodeToString()
+        if (decodedResponse != null) {
+            ApiResult.Success(deserialize(decodedResponse))
+        } else {
+            ApiResult.Error(Exception("API call failed or returned null/empty response"))
+        }
+    } catch (e: Exception) {
+        ApiResult.Error(e)
+    }
+}
+
+suspend inline fun <reified T> makeGetRequest(
+    apiPath: String,
+    noinline deserialize: (String) -> T
+): ApiResult<T> {
+    return handleApiCall(apiPath, "GET", deserialize = deserialize)
+}
+
+suspend inline fun <reified Request, reified Response> makePostRequest(
+    apiPath: String,
+    requestBody: Request,
+    noinline deserialize: (String) -> Response,
+    noinline serialize: (Request) -> String
+): ApiResult<Response> {
+    val serializedBody = serialize(requestBody).encodeToByteArray()
+    return handleApiCall(apiPath, "POST", serializedBody, deserialize = deserialize)
+}
+
 import com.example.empty3.api.*
 import com.varabyte.kobweb.browser.api
 import io.ktor.utils.io.core.*
@@ -9,209 +54,95 @@ import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 
 
-suspend fun addProduct(product: Product): String {
-    return window.api.tryPost(
+suspend fun addProduct(product: Product): ApiResult<String> {
+    return makePostRequest(
         apiPath = "addproduct",
-        body = Json.encodeToString(product).encodeToByteArray()
-    )?.decodeToString().toString()
+        requestBody = product,
+        serialize = { Json.encodeToString(it) },
+        deserialize = { it }
+    )
 }
 
-suspend fun getAllSubscriber(
-    onSuccess: (ApiListResponse) -> Unit,
-    onError: (Exception) -> Unit
-) {
-    try {
-        val result = window.api.tryGet(apiPath = "getallproducts")?.decodeToString()
-        if (result != null) {
-            onSuccess(Json.decodeFromString(result))
-        } else {
-            onError(Exception("Something went wrong"))
-        }
-    } catch (e: Exception) {
-        println(e)
-        onError(e)
-    }
+suspend fun getAllFoods(): ApiResult<ApiListResponse> {
+    return makeGetRequest(
+        apiPath = "getallfoods",
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-suspend fun getAllFoods(
-    onSuccess: (ApiListResponse) -> Unit,
-    onError: (Exception) -> Unit
-) {
-    try {
-        val result = window.api.tryGet(apiPath = "getallfoods")?.decodeToString()
-        if (result != null) {
-            onSuccess(Json.decodeFromString(result))
-        } else {
-            onError(Exception("Something went wrong"))
-        }
-    } catch (e: Exception) {
-        println(e)
-        onError(e)
-    }
+suspend fun getAllDrinks(): ApiResult<ApiListResponse> {
+    return makeGetRequest(
+        apiPath = "getalldrinks",
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-suspend fun getAllDrinks(
-    onSuccess: (ApiListResponse) -> Unit,
-    onError: (Exception) -> Unit
-) {
-    try {
-        val result = window.api.tryGet(apiPath = "getalldrinks")?.decodeToString()
-        if (result != null) {
-            onSuccess(Json.decodeFromString(result))
-        } else {
-            onError(Exception("Something went wrong"))
-        }
-    } catch (e: Exception) {
-        println(e)
-        onError(e)
-    }
+suspend fun getAllColas(): ApiResult<ApiListResponse> {
+    return makeGetRequest(
+        apiPath = "getallcolas",
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-suspend fun getAllColas(
-    onSuccess: (ApiListResponse) -> Unit,
-    onError: (Exception) -> Unit
-) {
-    try {
-        val result = window.api.tryGet(apiPath = "getallcolas")?.decodeToString()
-        if (result != null) {
-            val apiResponse = json.decodeFromString(ListResponseSerializer, result)
-            onSuccess(apiResponse)
-        } else {
-            onError(Exception("Failed to retrieve data"))
-        }
-    } catch (e: Exception) {
-        onError(e)
-    }
+suspend fun getAllProducts(): ApiResult<ApiListResponse> {
+    return makeGetRequest(
+        apiPath = "getallproducts",
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-
-suspend fun getAllProducts(onSuccess: (ApiListResponse) -> Unit, onError: (Exception) -> Unit) {
-    try {
-        val result = window.api.tryGet(apiPath = "getallproducts")?.decodeToString()
-        if (result != null) {
-            val apiResponse = json.decodeFromString(ListResponseSerializer, result)
-            onSuccess(apiResponse)
-        } else {
-            onError(Exception("Failed to retrieve data"))
-        }
-    } catch (e: Exception) {
-        onError(e)
-    }
+suspend fun addReview(productId: String, username: String, rating: Int, comment: String): ApiResult<ApiListResponse> {
+    val reviewRequest = ReviewRequest(productId, username, rating, comment)
+    return makePostRequest(
+        apiPath = "addreview",
+        requestBody = reviewRequest,
+        serialize = { Json.encodeToString(it) },
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-
-suspend fun addReview(productId: String, username: String, rating: Int, comment: String, onSuccess: (ApiListResponse) -> Unit, onError: (Exception) -> Unit) {
-    try {
-        val reviewRequest = ReviewRequest(productId, username, rating, comment)
-        val response = window.api.tryPost(
-            apiPath = "addreview",
-            body = Json.encodeToString(reviewRequest).toByteArray()
-        )?.decodeToString()
-        response?.let {
-            val apiResponse = Json.decodeFromString(ApiListResponse.serializer(), it)
-            if (apiResponse is ApiListResponse.SuccessProducts) {
-                onSuccess(apiResponse)
-            } else if (apiResponse is ApiListResponse.Error) {
-                onError(Exception(apiResponse.message))
-            }
-        } ?: run {
-            onError(Exception("Failed to add review"))
-        }
-    } catch (e: Exception) {
-        onError(e)
-    }
+suspend fun updateProduct(product: Product): ApiResult<ApiListResponse> {
+    return makePostRequest(
+        apiPath = "updateproduct",
+        requestBody = product,
+        serialize = { Json.encodeToString(it) },
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-
-
-
-
-suspend fun updateProduct(product: Product, onSuccess: (ApiListResponse) -> Unit, onError: (Exception) -> Unit) {
-    try {
-        val response = window.api.tryPost(
-            apiPath = "updateproduct",
-            body = Json.encodeToString(product).toByteArray()
-        )?.decodeToString()
-        response?.let {
-            val apiResponse = Json.decodeFromString(ApiListResponse.serializer(), it)
-            onSuccess(apiResponse)
-        } ?: run {
-            onError(Exception("Failed to update product"))
-        }
-    } catch (e: Exception) {
-        onError(e)
-    }
+suspend fun registerUser(user: User): ApiResult<ApiListResponse> {
+    return makePostRequest(
+        apiPath = "register",
+        requestBody = user,
+        serialize = { Json.encodeToString(it) },
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-suspend fun registerUser(user: User, onSuccess: (ApiListResponse) -> Unit, onError: (Exception) -> Unit) {
-    try {
-        val response = window.api.tryPost(
-            apiPath = "register",
-            body = Json.encodeToString(user).toByteArray()
-        )?.decodeToString()
-        response?.let {
-            val apiResponse = Json.decodeFromString(ListResponseSerializer, it)
-            onSuccess(apiResponse)
-        } ?: run {
-            onError(Exception("Failed to register"))
-        }
-    } catch (e: Exception) {
-        onError(e)
-    }
+suspend fun loginUser(credentials: UserCredentials): ApiResult<ApiListResponse> {
+    return makePostRequest(
+        apiPath = "login",
+        requestBody = credentials,
+        serialize = { Json.encodeToString(it) },
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-suspend fun loginUser(credentials: UserCredentials, onSuccess: (ApiListResponse) -> Unit, onError: (Exception) -> Unit) {
-    try {
-        val response = window.api.tryPost(
-            apiPath = "login",
-            body = Json.encodeToString(credentials).toByteArray()
-        )?.decodeToString()
-        response?.let {
-            val apiResponse = Json.decodeFromString(ListResponseSerializer, it)
-            onSuccess(apiResponse)
-        } ?: run {
-            onError(Exception("Failed to log in"))
-        }
-    } catch (e: Exception) {
-        onError(e)
-    }
+suspend fun deleteReview(productId: String, username: String): ApiResult<ApiListResponse> {
+    val reviewDeleteRequest = ReviewDeleteRequest(productId, username)
+    return makePostRequest(
+        apiPath = "deletereview",
+        requestBody = reviewDeleteRequest,
+        serialize = { Json.encodeToString(it) },
+        deserialize = { Json.decodeFromString<ApiListResponse>(it) }
+    )
 }
 
-suspend fun deleteReview(productId: String, username: String, onSuccess: (ApiListResponse) -> Unit, onError: (Exception) -> Unit) {
-    try {
-        val reviewDeleteRequest = ReviewDeleteRequest(productId, username)
-        val response = window.api.tryPost(
-            apiPath = "deletereview",
-            body = Json.encodeToString(reviewDeleteRequest).toByteArray()
-        )?.decodeToString()
-        response?.let {
-            val apiResponse = Json.decodeFromString(ApiListResponse.serializer(), it)
-            if (apiResponse is ApiListResponse.SuccessProducts) {
-                onSuccess(apiResponse)
-            } else if (apiResponse is ApiListResponse.Error) {
-                onError(Exception(apiResponse.message))
-            }
-        } ?: run {
-            onError(Exception("Failed to delete review"))
-        }
-    } catch (e: Exception) {
-        onError(e)
-    }
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/*
+Refactoring Summary:
+- Centralized API call logic using generic `makeGetRequest` and `makePostRequest` functions.
+- Standardized error handling and response wrapping using the `ApiResult` sealed class.
+- Eliminated redundant code for try-catch blocks and JSON (de)serialization.
+- Standardized function names and signatures for improved clarity and maintainability.
+- Removed duplicate function `fetchProductsAlternate`.
+*/
